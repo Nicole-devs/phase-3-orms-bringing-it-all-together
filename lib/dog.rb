@@ -1,6 +1,7 @@
 class Dog
     attr_accessor :id, :name, :breed
   
+    
     def initialize(attributes)
       attributes.each {|key, value| self.send(("#{key}="), value)}
     end
@@ -18,10 +19,11 @@ class Dog
         DB[:conn].execute(sql)
       end
     
-      def self.drop_table
-        sql = "DROP TABLE IF EXISTS dogs"
-        DB[:conn].execute(sql)
-      end
+
+    def self.drop_table
+    sql = "DROP TABLE IF EXISTS dogs"
+    DB[:conn].execute(sql)
+    end
 
       
     def save
@@ -39,6 +41,7 @@ class Dog
         self
     end
     
+
     def self.create(attributes)
         dog = Dog.new(attributes)
         dog.save
@@ -55,7 +58,7 @@ class Dog
         self.new(attributes)
     end
     
-    
+
     def self.all
         sql = "SELECT * FROM dogs"
         DB[:conn].execute(sql).map do |row|
